@@ -36,7 +36,6 @@ awk -F '\t' '
 	if(profitPercentage >= curMaxPP){
 		maxID = rowID;
 		curMaxPP = profitPercentage;
-		print profitFix " " salesFix " " index(profit, ".");
 	}
 
 	if(city=="Albuquerque" && substr(orderDate, length(orderDate)-1, 2)=="17")
