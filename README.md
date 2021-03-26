@@ -45,7 +45,7 @@ if(profitPercentage >= curMaxPP){
 Seperti penjelasan pada soal bahwa `Profit Percentage = (profit/cost price)*100;`. Kemudian bandingkan dengan Profit Percentage terbesar dan simpan rowID dari record tersebut.
 Setelah selesai, tulis pada hasil.txt.
 ```
-Transaksi terakhir dengan profit percentage terbesar yaitu *ID Transaksi* dengan persentase *Profit Percentage*%.
+Transaksi terakhir dengan profit percentage terbesar yaitu *maxID* dengan persentase *curMaxPP*%.
 ```
 ### sub-soal b
 Untuk mendapatkan hasil yang dimaksud, filter kota untuk "Albuquerque" dan format pada `orderDate` menunjukkan bahwa 2 angka terakhir merupakan tahun dari pemesanan, sehingga untuk mendapatkan tahun 2017, cari tanggal dengan "17" sebagai 2 angka terakhir. Kemudian hasil tersebut dapat disimpan pada sebuah array dengan menggunakan nama customer sebagai index-nya.
@@ -64,4 +64,40 @@ Untuk mendapatkannya, gunakan print dan loop.
 print "Daftar nama customer di Albuquerque pada tahun 2017 antara lain:"
 for(i in cust)
   print i;
+```
+### sub-soal c
+Untuk mendapatkan segment paling sedikit adalah dengan menghitung jumlah transaksi tiap segment, yaitu dengan
+```
+segCount[segment]++;
+```
+Kemudian bandingkan tiap segment untuk mendapatkan nilai minimal dan simpan juga tipe segment tersebut.
+```
+minSeg = 10000;
+for(i in segCount)
+  if(segCount[i] < minSeg){
+    minSeg = segCount[i];
+    segType = i;
+  }
+```
+Setelah didapatkan, print dengan format
+```
+Tipe segmen customer yang penjualannya paling sedikit adalah *segType* dengan *minSeg* transaksi.
+```
+### sub-soal d
+Penghasilan tiap region dapat disimpan pada array dan menjumlahkan setiap profit dari region tersebut.
+```
+regCount[region] += profitFix;
+```
+Kemudian bandingkan profit setiap region.
+```
+minReg = 100000000;
+for(i in regCount)
+  if(regCount[i] < minReg){
+    minReg = regCount[i];
+    regName = i;
+  }
+```
+Cetak hasilnya pada hasil.txt dengan format:
+```
+Wilayah bagian (region) yang memiliki total keuntungan (profit) yang paling sedikit adalah *regName* dengan total keuntungan *minReg*
 ```
