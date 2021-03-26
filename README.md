@@ -43,5 +43,25 @@ if(profitPercentage >= curMaxPP){
 }
 ```
 Seperti penjelasan pada soal bahwa `Profit Percentage = (profit/cost price)*100;`. Kemudian bandingkan dengan Profit Percentage terbesar dan simpan rowID dari record tersebut.
-Setelah selesai, tulis pada `hasil.txt`
-```Transaksi terakhir dengan profit percentage terbesar yaitu *ID Transaksi* dengan persentase *Profit Percentage*%.```
+Setelah selesai, tulis pada hasil.txt.
+```
+Transaksi terakhir dengan profit percentage terbesar yaitu *ID Transaksi* dengan persentase *Profit Percentage*%.
+```
+### sub-soal b
+Untuk mendapatkan hasil yang dimaksud, filter kota untuk "Albuquerque" dan format pada `orderDate` menunjukkan bahwa 2 angka terakhir merupakan tahun dari pemesanan, sehingga untuk mendapatkan tahun 2017, cari tanggal dengan "17" sebagai 2 angka terakhir. Kemudian hasil tersebut dapat disimpan pada sebuah array dengan menggunakan nama customer sebagai index-nya.
+```
+if(city=="Albuquerque" && substr(orderDate, length(orderDate)-1, 2)=="17")
+  cust[custName]++;
+```
+Simpan hasilnya pada hasil.txt dengan format:
+```
+Daftar nama customer di Albuquerque pada tahun 2017 antara lain:
+*Nama Customer1*
+*Nama Customer2* dst
+```
+Untuk mendapatkannya, gunakan print dan loop.
+```
+print "Daftar nama customer di Albuquerque pada tahun 2017 antara lain:"
+for(i in cust)
+  print i;
+```
