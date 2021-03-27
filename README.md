@@ -4,7 +4,7 @@
 - Riki Mi'roj Achmad (05111940000093) @rikiachmad
 - Achmad Akbar Irwanda	(05111940000138) @Irwanda04
 
-## 1
+## Nomor 1
 ## Nomor 2
 File pada Laporan-TokoShiSop.tsv setiap kolom dipisahkan oleh `\t`, sehingga dapat menggunakan awk untuk memisahkan setiap nilainya. Hasil dari pemisahan itu dimulai dari $1 sampai $21, jadi `rowID = $1`, `orderDate = $3` dst. Namun karena baris pertama berisi header, maka cukup hitung mulai baris ke-2 dengan `(NR>1)`.
 Setelah itu, ubah nilai sales dan profit karena jika tidak, maka hanya akan terambil nilai depannya saja (sebelum titik).
@@ -101,3 +101,55 @@ Cetak hasilnya pada hasil.txt dengan format:
 ```
 Wilayah bagian (region) yang memiliki total keuntungan (profit) yang paling sedikit adalah *regName* dengan total keuntungan *minReg*
 ```
+## Nomer 3
+### sub-soal a
+Untuk mengunduh 23 gambar dari "https://loremflickr.com/320/240/kitten" serta menyimpan log-nya ke file "Foto.log" dapat menggunakan kode berikut:
+```
+for((i=1; i<24; i++))
+do
+  wget -a Foto.log https://loremflicker.com/320/240/kitten -O "Koleksi_$i.jpg"
+```
+wget -a Foto.log agar log hasil download dapat tersimpan pada File.log, kemudian wget -O kita gunakan untuk merename nama file yang telah diunduh menjadi Koleksi_1.jpg, Koleksi_2.jpg, dst.
+Karena gambar yang diunduh acak dan ada kemungkinan gambar yang sama terunduh lebih dari sekali maka kita perlu untuk mengecek apakah terdapat gambar yang sama pada gambar yang kita unduh. Jika terdapat gambar yang sama maka kita perlu menghapus gambar tersebut.
+```
+for((k=1; k<i; k++))
+  do
+    check=$(cmp Koleksi_$i.jpg Koleksi_$i.jpg)
+    sama=$?
+     if [ $sama -eq 1 ]
+     then
+        rm Koleksi_$i.jpg
+        i=$(($i-1))
+        break
+     fi
+done
+```
+Untuk mengecek apakah terdapat yang sama atau tidak, kita dapat menggunakan perintah cmp. Jika gambar sama maka gambar tersebut akan terhapus menggunakan perintah rm dan program akan berhenti melakukan pengecekan ditandai dengan perintah break.
+Kemudian, kita juga melakukan pengecekan apakah terdapat nama gambar yang tidak berurutan karena gambar yang sama telah dihapus. Oleh karena itu, kita akan merename file terakhir untuk mengisi urutan nomor yang hilang karena telah terhapus.
+```
+for((i=1; i<24; i++))
+do
+  if [ ! -f Koleksi_$i.jpg ];
+  then
+    for((j=23; j>1; j--))
+    do
+      if [ -f Koleksi_$i.jpg ];
+      then
+          mv Koleksi_$j.jpg Koleksi_$i.jpg
+          break
+      fi
+    done
+  fi
+done
+```
+Langkah selanjutnya, kita perlu merename nama file koleksi 1-9 yang awalnya bernama Koleksi_1.jpg menjadi Koleksi_01.jpg. 
+```
+for((i=1; i<10; i++))
+do
+  if [ -f Koleksi_$i.jpg ]
+  then
+    mv Koleksi_$i.jpg Koleksi_0$i
+  fi
+done
+```
+Untuk mengubah nama file, dapat menggunakan perintah mv.
