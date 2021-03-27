@@ -1,0 +1,7 @@
+#!/bin/bash
+
+#zip saat kuliah
+0 7 * * 1-5 cd /home/riki/Praktikum1/ && bash "soal3d.sh"
+
+#unzip
+0 18 * * 1-5 cd /home/riki/Praktikum1/ && unzip -P $(date +"%m%d%Y") Koleksi.zip && rm "Koleksi.zip"
