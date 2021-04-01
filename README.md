@@ -127,3 +127,16 @@ do
 done
 ```
 Untuk mengubah nama file, dapat menggunakan perintah mv.
+
+### sub-soal b
+Memindahkan gambar yang telah diunduh beserta log-nya ke dalam folder yang bernama tanggal unduhnya dengan format "DD-MM-YYYY".
+```
+#!/bin/bash
+
+bash ./no3.sh
+folder=$(date +"%d-%m-%Y")
+mkdir "$folder"
+mv *.jpg $folder
+mv Foto.log $folder
+```
+Langkah pertama, kita jalankan program 3a lebih dulu. Setelah itu buat variabel folder dengan format nama tanggal hari itu "DD-MM-YYYY". Lalu, buat folder menggunakan perintah mkdir. Terakhir, kita pindahkan gambar-gambar yang telah diunduh beserta file Foto.log kedalam folder baru tersebut menggunakan perintah mv.
