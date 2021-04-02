@@ -220,3 +220,8 @@ Karena script tersebut akan dijalankan sehari sekali pada jam 8 malam untuk tang
 0 20 1-31/7,2-31/4 * * cd /home/fika/Praktikum1/shift3 && bash no3b.sh
 ```
 Script diatas bertujuan untuk menjalankan atau mengeksekusi script no3b.sh setiap sehari sekali pada jam 8 malam atau 20.00 untuk tanggal-tanggal tertentu setiap bulannya, yaitu dari tanggal 1 setiap tujuh hari sekali seperti tanggal 1,8,15,dst, serta dari tanggal 2 setiap empat hari sekali seperti 2,6,10,dst. Nantinya folder hasil eksekusi akan tersimpan dalam folder shift3.
+Ketika sub-soal b dieksekusi akan terbentuk folder seperti gambar berikut:
+<img width="398" alt="3b" src="https://user-images.githubusercontent.com/67305615/113427088-a4c0b100-93fe-11eb-9602-230a680fef66.PNG">
+Adapun isi folder tersebut sebagi berikut:
+<img width="397" alt="3b isi folder" src="https://user-images.githubusercontent.com/67305615/113427122-b43ffa00-93fe-11eb-9358-eaf430e4a4f1.PNG">
+Jumlah foto sebanyak 21 menandakan bahwa terdapat 2 foto yang sama, sehingga 2 foto tersebut akan otomatis terhapus.
