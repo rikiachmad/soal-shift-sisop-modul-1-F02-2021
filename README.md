@@ -31,7 +31,7 @@ Catatan :
 
 -	Tidak boleh menggunakan AWK
 
-# Jawaban nomor 1
+### Jawaban nomor 1
 
 ## Nomor 2
 Steven dan Manis mendirikan sebuah startup bernama “TokoShiSop”. Sedangkan kamu dan Clemong adalah karyawan pertama dari TokoShiSop. Setelah tiga tahun bekerja, Clemong diangkat menjadi manajer penjualan TokoShiSop, sedangkan kamu menjadi kepala gudang yang mengatur keluar masuknya barang. 
