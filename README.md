@@ -5,7 +5,7 @@
 - Achmad Akbar Irwanda	(05111940000138) @Irwanda04
 
 ## Nomor 1
-1.	Ryujin baru saja diterima sebagai IT support di perusahaan Bukapedia. Dia diberikan tugas untuk membuat laporan harian untuk aplikasi internal perusahaan, ticky. Terdapat 2 laporan yang harus dia buat, yaitu laporan daftar peringkat pesan error terbanyak yang dibuat oleh ticky dan laporan penggunaan user pada aplikasi ticky. Untuk membuat laporan tersebut, Ryujin harus melakukan beberapa hal berikut:
+Ryujin baru saja diterima sebagai IT support di perusahaan Bukapedia. Dia diberikan tugas untuk membuat laporan harian untuk aplikasi internal perusahaan, ticky. Terdapat 2 laporan yang harus dia buat, yaitu laporan daftar peringkat pesan error terbanyak yang dibuat oleh ticky dan laporan penggunaan user pada aplikasi ticky. Untuk membuat laporan tersebut, Ryujin harus melakukan beberapa hal berikut:
 (a) Mengumpulkan informasi dari log aplikasi yang terdapat pada file syslog.log. Informasi yang diperlukan antara lain: jenis log (ERROR/INFO), pesan log, dan username pada setiap baris lognya. Karena Ryujin merasa kesulitan jika harus memeriksa satu per satu baris secara manual, dia menggunakan regex untuk mempermudah pekerjaannya. Bantulah Ryujin membuat regex tersebut.
 (b) Kemudian, Ryujin harus menampilkan semua pesan error yang muncul beserta jumlah kemunculannya.
 (c) Ryujin juga harus dapat menampilkan jumlah kemunculan log ERROR dan INFO untuk setiap user-nya.
@@ -133,7 +133,7 @@ Cetak hasilnya pada hasil.txt dengan format:
 Wilayah bagian (region) yang memiliki total keuntungan (profit) yang paling sedikit adalah *regName* dengan total keuntungan *minReg*
 ```
 ## Nomer 3
-3.	Kuuhaku adalah orang yang sangat suka mengoleksi foto-foto digital, namun Kuuhaku juga merupakan seorang yang pemalas sehingga ia tidak ingin repot-repot mencari foto, selain itu ia juga seorang pemalu, sehingga ia tidak ingin ada orang yang melihat koleksinya tersebut, sayangnya ia memiliki teman bernama Steven yang memiliki rasa kepo yang luar biasa. Kuuhaku pun memiliki ide agar Steven tidak bisa melihat koleksinya, serta untuk mempermudah hidupnya, yaitu dengan meminta bantuan kalian. Idenya adalah :
+Kuuhaku adalah orang yang sangat suka mengoleksi foto-foto digital, namun Kuuhaku juga merupakan seorang yang pemalas sehingga ia tidak ingin repot-repot mencari foto, selain itu ia juga seorang pemalu, sehingga ia tidak ingin ada orang yang melihat koleksinya tersebut, sayangnya ia memiliki teman bernama Steven yang memiliki rasa kepo yang luar biasa. Kuuhaku pun memiliki ide agar Steven tidak bisa melihat koleksinya, serta untuk mempermudah hidupnya, yaitu dengan meminta bantuan kalian. Idenya adalah :
 (a) Membuat script untuk mengunduh 23 gambar dari "https://loremflickr.com/320/240/kitten" serta menyimpan log-nya ke file "Foto.log". Karena gambar yang diunduh acak, ada kemungkinan gambar yang sama terunduh lebih dari sekali, oleh karena itu kalian harus menghapus gambar yang sama (tidak perlu mengunduh gambar lagi untuk menggantinya). Kemudian menyimpan gambar-gambar tersebut dengan nama "Koleksi_XX" dengan nomor yang berurutan tanpa ada nomor yang hilang (contoh : Koleksi_01, Koleksi_02, ...)
 //mkdir Foto.log
 wget https://loremflickr.com/320/240/kitten >> Foto.log
@@ -210,3 +210,8 @@ mv *.jpg $folder
 mv Foto.log $folder
 ```
 Langkah pertama, kita jalankan program 3a lebih dulu. Setelah itu buat variabel folder dengan format nama tanggal hari itu "DD-MM-YYYY". Lalu, buat folder menggunakan perintah mkdir. Terakhir, kita pindahkan gambar-gambar yang telah diunduh beserta file Foto.log kedalam folder baru tersebut menggunakan perintah mv.
+Karena script tersebut akan dijalankan sehari sekali pada jam 8 malam untuk tanggal-tanggal tertentu setiap bulan, yaitu dari tanggal 1 tujuh hari sekali (1,8,...), serta dari tanggal 2 empat hari sekali(2,6,...). Maka, kita dapat crontab seperti berikut:
+```
+0 20 1-31/7,2-31/4 * * cd /home/fika/Praktikum1/shift3 && bash no3b.sh
+```
+Script diatas bertujuan untuk menjalankan atau mengeksekusi script no3b.sh setiap sehari sekali pada jam 8 malam atau 20.00 untuk tanggal-tanggal tertentu setiap bulannya, yaitu dari tanggal 1 setiap tujuh hari sekali seperti tanggal 1,8,15,dst, serta dari tanggal 2 setiap empat hari sekali seperti 2,6,10,dst. Nantinya folder hasil eksekusi akan tersimpan dalam folder shift3.
