@@ -32,7 +32,85 @@ Catatan :
 -	Tidak boleh menggunakan AWK
 
 ### Jawaban nomor 1
+### sub-soal a
+untuk sub soal a kita dapat menggunakan command regex sebagai berikut
+```bash
+reg="(INFO |ERROR )(.*)((?=[\(])(.*))"
+grep1="(?<=ERROR )(.*)(?=\ )"
+grep2="(?<=[(])(.*)(?=[)])"
+grep3="(?=[(])(.*)(?<=[)])"
+input="syslog.log";
+echo grep -oP "$regex" "$input"
 
+```
+### sub-soal b
+untuk mendapatkan jumlah error dan pesan error kita dapat menggunakan command regex sebagai berikut:
+```bash
+error=$(grep -oP "$regex1" "$input" | sort)
+echo ERROR_MESSAGE
+echo $error | uniq -c | sort -nr
+```
+### sub-soal c
+Untuk mendapatkan jumlah error dan info untuk tiap-tiap usernya kita dapat menggunakan command sebagai berikut:
+```bash
+error=$(grep -oP "ERROR.*" "$input")
+echo ERROR :
+grep -oP "$regex2" <<< "$error" | sort | uniq -c
+info=$(grep -oP "INFO.*" "$input")
+echo INFO :
+grep -oP "$regex2" <<< "$info" | sort | uniq -c
+```
+### sub-soal d
+Lalu untuk sub-soal d, kita dapat mendapatkan jumlah error beserta isi pesan errornya dengan menggunakan command
+```bash
+string="`grep -o 'ERROR.*' error.log | cut -f2- -d ' ' | sort | uniq -c | sort -nr`"
+```
+dan memasukkannya kedalam variabel string.
+Setelah didapatkan jumlah error beserta isi pesannya, kita dapat memanipulasi string tersebut sehingga dapat menuliskannya ke dalam file error_message.csv sesuai dengan format yang diinginkan dengan cara sebagai berikut.
+```bash
+echo "Error,Count" > error_message.csv
+sed 's,([^(]*$,,' syslog.log > error.log
+
+arr=($string)
+count="${arr[0]}"
+
+for((i=1; i<${#arr[@]}; i++))
+do
+  if ! [[ "${arr[$i]}" =~ ^[0-9]+$ ]]; then
+    echo -n "${arr[$i]}" >> error_message.csv;
+  if ! [[ "${arr[$(($i+1))]}" =~ ^[0-9]+$ ]] && [ $i -ne $((${#arr[@]}-1)) ]; then
+    echo -n  " " >> error_message.csv
+  fi
+  else echo -n -e ",$count\n" >> error_message.csv
+    count=${arr[$i]}
+  fi
+done
+echo ",$count" >> error_message.csv
+```
+### sub-soal e
+Dan untuk sub-soal yang terakhir ini, kita dapat mendapatkan total jumlah user dengan menggunakan command
+```bash
+user=`grep -o "ERROR.*\|INFO.*" syslog.log | cut -f2- -d '(' | sed 's/)$//' | sort | uniq`
+```
+Lalu dilakukan loop sebanyak total user yang tersedia di dalam array dan untuk tiap usernya kita dapatkan jumlah INFO dan ERROR nya lalu menuliskannya ke dalam file user_statistic.csv.
+```bash
+echo "USERNAME,INFO,ERROR" > user_statistic.csv
+
+##soal 1e
+data=($user)
+for ((i=0; i<${#data[@]}; i++))
+do
+  error=`grep -c "ERROR.*(${data[$i]})" syslog.log`
+  info=`grep -c "INFO.*(${data[$i]})" syslog.log`
+  echo -n  "${data[$i]}," >> user_statistic.csv
+  echo -n "$info," >> user_statistic.csv
+  echo "$error" >> user_statistic.csv
+  echo "${data[$i]} "
+  ##soal1c
+  echo "info: $info"
+  echo -e "error: $error\n"
+done
+```
 ## Nomor 2
 Steven dan Manis mendirikan sebuah startup bernama “TokoShiSop”. Sedangkan kamu dan Clemong adalah karyawan pertama dari TokoShiSop. Setelah tiga tahun bekerja, Clemong diangkat menjadi manajer penjualan TokoShiSop, sedangkan kamu menjadi kepala gudang yang mengatur keluar masuknya barang. 
 Tiap tahunnya, TokoShiSop mengadakan Rapat Kerja yang membahas bagaimana hasil penjualan dan strategi kedepannya yang akan diterapkan. Kamu sudah sangat menyiapkan sangat matang untuk raker tahun ini. Tetapi tiba-tiba, Steven, Manis, dan Clemong meminta kamu untuk mencari beberapa kesimpulan dari data penjualan “Laporan-TokoShiSop.tsv”.
