@@ -87,6 +87,8 @@ do
 done
 echo ",$count" >> error_message.csv
 ```
+![soal 1d](https://user-images.githubusercontent.com/74702068/113478883-da74a100-94b5-11eb-9b9f-57fe5901bf10.png)
+
 ### sub-soal e
 Dan untuk sub-soal yang terakhir ini, kita dapat mendapatkan total jumlah user dengan menggunakan command
 ```bash
@@ -111,6 +113,8 @@ do
   echo -e "error: $error\n"
 done
 ```
+![soal 1e](https://user-images.githubusercontent.com/74702068/113478892-e1031880-94b5-11eb-80f9-9ad7ebab83b5.png)
+
 ## Nomor 2
 Steven dan Manis mendirikan sebuah startup bernama “TokoShiSop”. Sedangkan kamu dan Clemong adalah karyawan pertama dari TokoShiSop. Setelah tiga tahun bekerja, Clemong diangkat menjadi manajer penjualan TokoShiSop, sedangkan kamu menjadi kepala gudang yang mengatur keluar masuknya barang. 
 Tiap tahunnya, TokoShiSop mengadakan Rapat Kerja yang membahas bagaimana hasil penjualan dan strategi kedepannya yang akan diterapkan. Kamu sudah sangat menyiapkan sangat matang untuk raker tahun ini. Tetapi tiba-tiba, Steven, Manis, dan Clemong meminta kamu untuk mencari beberapa kesimpulan dari data penjualan “Laporan-TokoShiSop.tsv”.
