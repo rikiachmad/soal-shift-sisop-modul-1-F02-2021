@@ -40,7 +40,7 @@ grep1="(?<=ERROR )(.*)(?=\ )"
 grep2="(?<=[(])(.*)(?=[)])"
 grep3="(?=[(])(.*)(?<=[)])"
 input="syslog.log";
-echo grep -oP "$regex" "$input"
+echo grep -oP "$reg" "$input"
 
 ```
 ### sub-soal b
@@ -308,3 +308,124 @@ Adapun isi folder tersebut sebagi berikut:
 <img width="397" alt="3b isi folder" src="https://user-images.githubusercontent.com/67305615/113427122-b43ffa00-93fe-11eb-9358-eaf430e4a4f1.PNG">
 
 Jumlah foto sebanyak 21 menandakan bahwa terdapat 2 foto yang sama, sehingga 2 foto tersebut akan otomatis terhapus.
+
+### sub-soal c
+Untuk sub-soal c perintah nya hampir mirip dengan sub-soal a, jadi disini kita dapat menggunakan kembali source code pada soal a namun dimodifikasi agar dapat memenuhi permintaan soal.
+Perintah untuk sub soal c ini adalah mengunduh gambar kelinci apabila telah diunduh gambar kucing, dan kembali mengunduh gambar kucing apabila telah mengunduh gambar kelinci.
+Untuk penyelesaian soal ini dapat menggunakan metode sebagai berikut:
+Langkah pertama adalah mengambil jumlah folder kucing dan kelinci dengan menggunakan command regex dan memasukkannya ke dalam variable
+```bash
+cekKucing=$(ls | grep -e "Kucing.*" | wc -l)
+cekKelinci=$(ls | grep -e "Kelinci.*" | wc -l)
+```
+setelah didapatkan jumlah folder kelinci dan kucing, keduanya dibandingkan, apabila jumlah folder kucing sama dengan folder kelinci, maka yang akan di unduh adalah gambar kucing
+```bash
+if [[ $cekKucing -eq $cekKelinci ]] ; then 
+for((i=1; i<24; i++))
+do
+  wget -O "Koleksi_$i.jpg" -a Foto.log https://loremflickr.com/320/240/kitten
+  for((k=1; k<i; k++))
+  do
+    check=$(cmp Koleksi_$i.jpg Koleksi_$i.jpg)
+    sama=$?
+     if [ $sama -eq 1 ]
+     then
+        rm Koleksi_$i.jpg
+        i=$(($i-1))
+        break
+     fi
+  done
+done
+
+for((i=1; i<24; i++))
+do
+  if [ ! -f Koleksi_$i.jpg ];
+  then
+    for((j=23; j>1; j--))
+    do
+      if [ -f Koleksi_$i.jpg ];
+      then
+          mv Koleksi_$j.jpg Koleksi_$i.jpg
+          break
+      fi
+    done
+  fi
+done
+
+for((i=1; i<10; i++))
+do
+  if [ -f Koleksi_$i.jpg ]
+  then
+    mv Koleksi_$i.jpg Koleksi_0$i.jpg
+  fi
+done
+
+ folder=$(date +"%m-%d-%Y")
+ mkdir "Kucing_$folder"
+ mv ./Koleksi_* ./Foto.log "./Kucing_$folder/"
+```
+dan apabila jumlah folder kucing lebih banyak dari folder kelinci, maka yang diunduh selanjutnya adalah gambar kelinci
+```bash
+else
+for((i=1; i<24; i++))
+do
+  wget -a Foto.log https://loremflickr.com/320/240/bunny -O "Koleksi_$i.jpg"
+  for((k=1; k<i; k++))
+  do
+    check=$(cmp Koleksi_$i.jpg Koleksi_$i.jpg)
+    sama=$?
+     if [ $sama -eq 1 ]
+     then
+        rm Koleksi_$i.jpg
+        i=$(($i-1))
+        break
+     fi
+  done
+done
+
+for((i=1; i<24; i++))
+do
+  if [ ! -f Koleksi_$i.jpg ];
+  then
+    for((j=23; j>1; j--))
+    do
+      if [ -f Koleksi_$i.jpg ];
+      then
+          mv Koleksi_$j.jpg Koleksi_$i.jpg
+          break
+      fi
+    done
+  fi
+done
+
+for((i=1; i<10; i++))
+do
+  if [ -f Koleksi_$i.jpg ]
+  then
+    mv Koleksi_$i.jpg Koleksi_0$i
+  fi
+done
+folder=$(date +"%m-%d-%Y")
+ mkdir "Kelinci_$folder"
+ mv ./Koleksi_* ./Foto.log "./Kelinci_$folder/"
+fi
+```
+dengan begitu, maka gambar kucing dan kelinci akan diunduh secara bergantian.
+### sub-soal d
+Untuk soal d diminta untuk memindahkan folder-folder yang telah diunduh dan di zip dengan password sesuai dengan tanggal saat ini.
+```bash
+name=$(date +"%m%d%Y")
+zip -r Koleksi.zip ./Kucing_* ./Kelinci_* -P "$name"
+rm -r Kucing_* 
+rm -r Kelinci_*
+```
+
+### sub-soal e
+Dan untuk sub soal yang terakhir ini, diminta untuk membuat crontab untuk melakukan zip pada saat jam kuliah dan unzip diluar jam kuliah sesuai perintah soal.
+```bash
+#saat kuliah
+0 7 * * 1-5 cd /home/riki/Praktikum1/ && bash "soal3d.sh"
+
+#unzip
+0 18 * * 1-5 cd /home/riki/Praktikum1/ && unzip -P $(date +"\%m\%d\%Y") Koleksi.zip && rm "Koleksi.zip"
+```
