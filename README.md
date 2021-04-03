@@ -239,30 +239,27 @@ do
 wget -a Foto.log agar log hasil download dapat tersimpan pada File.log, kemudian wget -O kita gunakan untuk merename nama file yang telah diunduh menjadi Koleksi_1.jpg, Koleksi_2.jpg, dst.
 Karena gambar yang diunduh acak dan ada kemungkinan gambar yang sama terunduh lebih dari sekali maka kita perlu untuk mengecek apakah terdapat gambar yang sama pada gambar yang kita unduh. Jika terdapat gambar yang sama maka kita perlu menghapus gambar tersebut.
 ```
-for((k=1; k<i; k++))
+for((k=1; k<i; k++));
   do
-    check=$(cmp Koleksi_$i.jpg Koleksi_$i.jpg)
-    sama=$?
-     if [ $sama -eq 1 ]
+     if diff Koleksi_$k.jpg Koleksi_$i.jpg &> /dev/null;
      then
         rm Koleksi_$i.jpg
-        i=$(($i-1))
         break
      fi
-done
+  done
 ```
-Untuk mengecek apakah terdapat yang sama atau tidak, kita dapat menggunakan perintah cmp. Jika gambar sama maka gambar tersebut akan terhapus menggunakan perintah rm dan program akan berhenti melakukan pengecekan ditandai dengan perintah break.
+Untuk mengecek apakah terdapat yang sama atau tidak, kita dapat menggunakan perintah diff. Jika gambar sama maka gambar tersebut akan terhapus menggunakan perintah rm dan program akan berhenti melakukan pengecekan ditandai dengan perintah break.
 Kemudian, kita juga melakukan pengecekan apakah terdapat nama gambar yang tidak berurutan karena gambar yang sama telah dihapus. Oleh karena itu, kita akan merename file terakhir untuk mengisi urutan nomor yang hilang karena telah terhapus.
 ```
 for((i=1; i<24; i++))
 do
   if [ ! -f Koleksi_$i.jpg ];
   then
-    for((j=23; j>1; j--))
+    for((k=23; k>1; k--))
     do
-      if [ -f Koleksi_$i.jpg ];
+      if [ -f Koleksi_$k.jpg ];
       then
-          mv Koleksi_$j.jpg Koleksi_$i.jpg
+          mv Koleksi_$k.jpg Koleksi_$i.jpg
           break
       fi
     done
@@ -273,10 +270,7 @@ Langkah selanjutnya, kita perlu merename nama file koleksi 1-9 yang awalnya bern
 ```
 for((i=1; i<10; i++))
 do
-  if [ -f Koleksi_$i.jpg ]
-  then
-    mv Koleksi_$i.jpg Koleksi_0$i
-  fi
+    mv Koleksi_$i.jpg Koleksi_0$i.jpg
 done
 ```
 Untuk mengubah nama file, dapat menggunakan perintah mv.
