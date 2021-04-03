@@ -210,6 +210,10 @@ Cetak hasilnya pada hasil.txt dengan format:
 ```
 Wilayah bagian (region) yang memiliki total keuntungan (profit) yang paling sedikit adalah *regName* dengan total keuntungan *minReg*
 ```
+Ouput yang dihasilkan pada jawaban nomer 2 ditunjukkan pada gambar berikut:
+
+<img width="398" alt="2praktikum1" src="https://user-images.githubusercontent.com/67305615/113475237-7eeae900-949e-11eb-8998-980ef1758146.PNG">
+
 ## Nomer 3
 Kuuhaku adalah orang yang sangat suka mengoleksi foto-foto digital, namun Kuuhaku juga merupakan seorang yang pemalas sehingga ia tidak ingin repot-repot mencari foto, selain itu ia juga seorang pemalu, sehingga ia tidak ingin ada orang yang melihat koleksinya tersebut, sayangnya ia memiliki teman bernama Steven yang memiliki rasa kepo yang luar biasa. Kuuhaku pun memiliki ide agar Steven tidak bisa melihat koleksinya, serta untuk mempermudah hidupnya, yaitu dengan meminta bantuan kalian. Idenya adalah :
 
