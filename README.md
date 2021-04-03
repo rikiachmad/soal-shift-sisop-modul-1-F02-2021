@@ -46,7 +46,7 @@ echo grep -oP "$reg" "$input"
 ### sub-soal b
 untuk mendapatkan jumlah error dan pesan error kita dapat menggunakan command regex sebagai berikut:
 ```bash
-error=$(grep -oP "$regex1" "$input" | sort)
+error=$(grep -oP "$grep1" "$input" | sort)
 echo ERROR_MESSAGE
 echo $error | uniq -c | sort -nr
 ```
@@ -55,10 +55,10 @@ Untuk mendapatkan jumlah error dan info untuk tiap-tiap usernya kita dapat mengg
 ```bash
 error=$(grep -oP "ERROR.*" "$input")
 echo ERROR :
-grep -oP "$regex2" <<< "$error" | sort | uniq -c
+grep -oP "$grep2" <<< "$error" | sort | uniq -c
 info=$(grep -oP "INFO.*" "$input")
 echo INFO :
-grep -oP "$regex2" <<< "$info" | sort | uniq -c
+grep -oP "$grep2" <<< "$info" | sort | uniq -c
 ```
 ### sub-soal d
 Lalu untuk sub-soal d, kita dapat mendapatkan jumlah error beserta isi pesan errornya dengan menggunakan command
