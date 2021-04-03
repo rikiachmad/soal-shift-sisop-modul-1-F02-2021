@@ -414,6 +414,8 @@ folder=$(date +"%m-%d-%Y")
  mv ./Koleksi_* ./Foto.log "./Kelinci_$folder/"
 fi
 ```
+![soal 3c](https://user-images.githubusercontent.com/74702068/113481681-0ba89d80-94c5-11eb-9c05-36b2dc0401d4.png)
+
 dengan begitu, maka gambar kucing dan kelinci akan diunduh secara bergantian.
 ### sub-soal d
 Untuk soal d diminta untuk memindahkan folder-folder yang telah diunduh dan di zip dengan password sesuai dengan tanggal saat ini.
@@ -423,6 +425,7 @@ zip -r Koleksi.zip ./Kucing_* ./Kelinci_* -P "$name"
 rm -r Kucing_* 
 rm -r Kelinci_*
 ```
+![soal 3 d](https://user-images.githubusercontent.com/74702068/113481682-0f3c2480-94c5-11eb-8d6a-a83b6c232018.png)
 
 ### sub-soal e
 Dan untuk sub soal yang terakhir ini, diminta untuk membuat crontab untuk melakukan zip pada saat jam kuliah dan unzip diluar jam kuliah sesuai perintah soal.
@@ -433,3 +436,5 @@ Dan untuk sub soal yang terakhir ini, diminta untuk membuat crontab untuk melaku
 #unzip
 0 18 * * 1-5 cd /home/riki/Praktikum1/ && unzip -P $(date +"\%m\%d\%Y") Koleksi.zip && rm "Koleksi.zip"
 ```
+![soal 3 e](https://user-images.githubusercontent.com/74702068/113481685-12371500-94c5-11eb-887c-e4f8262727c3.png)
+
