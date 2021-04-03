@@ -274,6 +274,9 @@ do
 done
 ```
 Untuk mengubah nama file, dapat menggunakan perintah mv.
+Jika program dieksekusi akan terunduh foto seperti gambar berikut:
+
+<img width="398" alt="3a" src="https://user-images.githubusercontent.com/67305615/113474876-bd7fa400-949c-11eb-962d-53b0d65c4dff.PNG">
 
 ### sub-soal b
 Memindahkan gambar yang telah diunduh beserta log-nya ke dalam folder yang bernama tanggal unduhnya dengan format "DD-MM-YYYY".
