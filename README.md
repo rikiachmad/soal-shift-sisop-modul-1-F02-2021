@@ -115,6 +115,9 @@ done
 ```
 ![soal 1e](https://user-images.githubusercontent.com/74702068/113478892-e1031880-94b5-11eb-80f9-9ad7ebab83b5.png)
 
+### Kendala yang dialami:
+- Masih sedikit bingung dengan penggunaan regex beserta jenis-jenis grep dan sortnya, sehingga cukup membutuhkan waktu lebih dalam mengerjakan soal nomer 1.
+
 ## Nomor 2
 Steven dan Manis mendirikan sebuah startup bernama “TokoShiSop”. Sedangkan kamu dan Clemong adalah karyawan pertama dari TokoShiSop. Setelah tiga tahun bekerja, Clemong diangkat menjadi manajer penjualan TokoShiSop, sedangkan kamu menjadi kepala gudang yang mengatur keluar masuknya barang. 
 Tiap tahunnya, TokoShiSop mengadakan Rapat Kerja yang membahas bagaimana hasil penjualan dan strategi kedepannya yang akan diterapkan. Kamu sudah sangat menyiapkan sangat matang untuk raker tahun ini. Tetapi tiba-tiba, Steven, Manis, dan Clemong meminta kamu untuk mencari beberapa kesimpulan dari data penjualan “Laporan-TokoShiSop.tsv”.
@@ -217,6 +220,9 @@ Wilayah bagian (region) yang memiliki total keuntungan (profit) yang paling sedi
 Ouput yang dihasilkan pada jawaban nomer 2 ditunjukkan pada gambar berikut:
 
 <img width="398" alt="2praktikum1" src="https://user-images.githubusercontent.com/67305615/113475237-7eeae900-949e-11eb-8998-980ef1758146.PNG">
+
+### Kendala yang dialami:
+- Sedikit kesulitan saat mengambil nilai dari file, karena awalnya yang terambil hanya dalam bentuk integer saja, bukan bilangan desimal.
 
 ## Nomer 3
 Kuuhaku adalah orang yang sangat suka mengoleksi foto-foto digital, namun Kuuhaku juga merupakan seorang yang pemalas sehingga ia tidak ingin repot-repot mencari foto, selain itu ia juga seorang pemalu, sehingga ia tidak ingin ada orang yang melihat koleksinya tersebut, sayangnya ia memiliki teman bernama Steven yang memiliki rasa kepo yang luar biasa. Kuuhaku pun memiliki ide agar Steven tidak bisa melihat koleksinya, serta untuk mempermudah hidupnya, yaitu dengan meminta bantuan kalian. Idenya adalah :
@@ -437,3 +443,6 @@ Dan untuk sub soal yang terakhir ini, diminta untuk membuat crontab untuk melaku
 0 18 * * 1-5 cd /home/riki/Praktikum1/ && unzip -P $(date +"\%m\%d\%Y") Koleksi.zip && rm "Koleksi.zip"
 ```
 <img width="398" alt="3a" src="https://user-images.githubusercontent.com/74702068/113481685-12371500-94c5-11eb-887c-e4f8262727c3.png">
+
+### Kendala yang dialami:
+- Untuk soal nomer 3 kendala yang dialami terletak dalam perintah crontabnya. Terkadang perintah crontab tidak bekerja, karena terdapat beberapa perintah CLI yang tidak langsung dapat berjalan dalam crontab.
